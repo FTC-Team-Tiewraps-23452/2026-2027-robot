@@ -19,7 +19,7 @@ public class TeleOP extends OpMode {
     public void init() {
         shooter = new Shooter(hardwareMap);
         intake = new Intake(hardwareMap);
-        follower = Constants.create(hardwareMap);
+//        follower = Constants.create(hardwareMap);
 
         telemetry.addData("init completed", "");
         telemetry.update();
@@ -28,14 +28,14 @@ public class TeleOP extends OpMode {
     @Override
     public void loop() {
         //TODO change to field-centric drive
-        ManualDrive.driveOrHold(
-                follower,
-                -gamepad1.left_stick_y,
-                gamepad1.left_stick_x,
-                gamepad1.right_stick_x
-        );
-
-        follower.update();
+//        ManualDrive.driveOrHold(
+//                follower,
+//                -gamepad1.left_stick_y,
+//                gamepad1.left_stick_x,
+//                gamepad1.right_stick_x
+//        );
+//
+//        follower.update();
 
         if (gamepad1.left_bumper) {
             intake.intake();

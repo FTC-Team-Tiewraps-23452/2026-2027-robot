@@ -24,36 +24,19 @@ public class Constants {
         c.backLeftName.set("leftBack");
         c.backRightName.set("rightBack");
 
-        c.frontLeftDirection.set(DcMotorSimple.Direction.REVERSE);
-        c.frontRightDirection.set(DcMotorSimple.Direction.FORWARD);
-        c.backLeftDirection.set(DcMotorSimple.Direction.REVERSE);
-        c.backRightDirection.set(DcMotorSimple.Direction.FORWARD);
+        c.frontLeftDirection.set(DcMotorSimple.Direction.FORWARD);
+        c.frontRightDirection.set(DcMotorSimple.Direction.REVERSE);
+        c.backLeftDirection.set(DcMotorSimple.Direction.FORWARD);
+        c.backRightDirection.set(DcMotorSimple.Direction.REVERSE);
 
-        //c.manualBrakeMode.set(true)
+        c.manualBrakeMode.set(true);
     });
 
-    public static OTOSConfig localizerConfig = new OTOSConfig(
-            c -> {
-                //TODO tune the odometry sensor and update the data to the actual values
-                c.name.set("otos");
-                c.angularScalar.set(1.0);
-                c.linearScalar.set(1.0);
-                c.offset.set(new Pose(0, 0));
-                c.linearUnit.set(DistanceUnit.CM);
-            }
-    );
-
-    public static ForesightConfig foresightConfig = new ForesightConfig(
-            //TODO to the foresight tuning and update the data
-            c -> {
-            }
-    );
-
-    public static Follower create(HardwareMap h) {
-        return new Follower(
-                new OTOSLocalizer(h, localizerConfig),
-                new Mecanum(h, drivetrainConfig),
-                new Foresight(foresightConfig)
-        );
-    }
+    public static OTOSConfig localizerConfig = new OTOSConfig(c -> {
+        c.name.set("otos");
+        c.linearScalar.set(443.89717333333334);
+        c.angularScalar.set(0.9872734284612351);
+        c.offset.set(new Pose(-0.0, -0.0));
+        c.linearUnit.set(DistanceUnit.INCH);
+    });
 }
