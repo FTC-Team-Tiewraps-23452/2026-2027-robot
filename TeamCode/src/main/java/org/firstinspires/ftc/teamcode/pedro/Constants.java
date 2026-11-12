@@ -2,12 +2,8 @@ package org.firstinspires.ftc.teamcode.pedro;
 
 import com.pedropathing.algorithm.Foresight;
 import com.pedropathing.algorithm.ForesightConfig;
-import com.pedropathing.controllers.Controller;
 import com.pedropathing.follower.Follower;
-import com.pedropathing.localization.Localizer;
-import com.pedropathing.math.Matrix;
 import com.pedropathing.math.Pose;
-import com.pedropathing.math.Vector2D;
 import com.pedropathing.revhub.drivetrains.Mecanum;
 import com.pedropathing.revhub.drivetrains.MecanumConfig;
 import com.pedropathing.revhub.localizers.OTOSConfig;
@@ -39,4 +35,13 @@ public class Constants {
         c.offset.set(new Pose(-0.0, -0.0, -Math.PI/2));
         c.linearUnit.set(DistanceUnit.INCH);
     });
+
+    public static Follower create(HardwareMap h) {
+        return new Follower(
+                new OTOSLocalizer(h, localizerConfig),
+                new Mecanum(h, drivetrainConfig),
+                //TODO change to existing ForesightConfig
+                new Foresight(new ForesightConfig(c -> {}))
+        );
+    }
 }
