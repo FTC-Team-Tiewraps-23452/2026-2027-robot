@@ -2,8 +2,11 @@ package org.firstinspires.ftc.teamcode.pedro;
 
 import com.pedropathing.algorithm.Foresight;
 import com.pedropathing.algorithm.ForesightConfig;
+import com.pedropathing.controllers.Controller;
 import com.pedropathing.follower.Follower;
+import com.pedropathing.math.Matrix;
 import com.pedropathing.math.Pose;
+import com.pedropathing.math.Vector2D;
 import com.pedropathing.revhub.drivetrains.Mecanum;
 import com.pedropathing.revhub.drivetrains.MecanumConfig;
 import com.pedropathing.revhub.localizers.OTOSConfig;
@@ -36,12 +39,32 @@ public class Constants {
         c.linearUnit.set(DistanceUnit.INCH);
     });
 
+    public static ForesightConfig foresightConfig = new ForesightConfig(
+            c -> {
+                Controller primaryTranslationalForward = Controller.proportional(0.05);
+                Controller secondaryTranslationalForward = Controller.proportional(0.02);
+                Controller primaryTranslationalLateral = Controller.proportional(0.05);
+                Controller secondaryTranslationalLateral = Controller.proportional(0.02);
+                c.forwardTranslational.set(Controller.piecewise(secondaryTranslationalForward).put(0.0, primaryTranslationalForward));
+                c.strafeTranslational.set(Controller.piecewise(secondaryTranslationalLateral).put(0.0, primaryTranslationalLateral));
+                c.coast.set(Controller.proportionalFeedforward(0.022));
+                c.brake.set(Controller.proportionalFeedforward(0.022));
+                c.headingFeedback.set(Controller.proportional(0.02));
+                c.headingBrakeCoefficients.set(Vector2D.cartesian(0.1, 0.05));
+                c.linearBrakeCoefficients.set(Matrix.diag(0.2, 0.2));
+                c.quadraticBrakeCoefficients.set(Matrix.diag(0.008, 0.008));
+                c.maxAchievableForwardVelocity.set(45.0);
+                c.maxAchievableStrafeVelocity.set(35.0);
+                c.naturalForwardDeceleration.set(40.0);
+                c.naturalStrafeDeceleration.set(30.0);
+            }
+    );
     public static Follower create(HardwareMap h) {
         return new Follower(
                 new OTOSLocalizer(h, localizerConfig),
                 new Mecanum(h, drivetrainConfig),
                 //TODO change to existing ForesightConfig
-                new Foresight(new ForesightConfig(c -> {}))
+                new Foresight(foresightConfig)
         );
     }
 }

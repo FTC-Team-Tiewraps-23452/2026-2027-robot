@@ -1,23 +1,28 @@
 package org.firstinspires.ftc.teamcode.robot.subsystem;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class Shooter {
-    private DcMotor motor;
+    private DcMotorEx motor;
 
     public Shooter(HardwareMap hardwareMap) {
-        motor = hardwareMap.get(DcMotor.class, "shooterMotor");
+        motor = hardwareMap.get(DcMotorEx.class, "shooterMotor");
         motor.setDirection(DcMotorSimple.Direction.FORWARD);
         motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
     }
 
     public void shoot() {
-        motor.setPower(.75);
+        motor.setVelocity(5000);
+    }
+    public void reverse(){motor.setVelocity(-3000);
     }
 
     public void stop() {
         motor.setPower(0);
     }
+
+    public double getVelocity(){ return motor.getVelocity();}
 }
