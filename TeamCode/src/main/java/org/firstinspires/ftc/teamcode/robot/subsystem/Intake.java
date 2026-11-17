@@ -17,8 +17,6 @@ public class Intake {
         motor.setPower(1);
     }
 
-    public void intakeIdle() {motor.setPower(0.1);}
-
     public void stop() {
         motor.setPower(0);
     }

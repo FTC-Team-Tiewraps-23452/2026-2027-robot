@@ -9,7 +9,7 @@ public class Storage {
 
     public Storage(HardwareMap hardwareMap) {
         storageMotor = hardwareMap.get(DcMotor.class, "storageMotor");
-        storageMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        storageMotor.setDirection(DcMotorSimple.Direction.FORWARD);
         storageMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 

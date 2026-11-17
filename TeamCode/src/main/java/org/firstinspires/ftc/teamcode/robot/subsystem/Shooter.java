@@ -15,9 +15,9 @@ public class Shooter {
     }
 
     public void shoot() {
-        motor.setVelocity(5000);
+        motor.setVelocity(1000);
     }
-    public void reverse(){motor.setVelocity(-3000);
+    public void reverse(){motor.setVelocity(-1000);
     }
 
     public void stop() {

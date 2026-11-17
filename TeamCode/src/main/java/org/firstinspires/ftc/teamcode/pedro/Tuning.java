@@ -28,9 +28,9 @@ public class Tuning {
         return new ForesightTuner((hardwareMap) -> new OTOSLocalizer(hardwareMap, Constants.localizerConfig), (hardwareMap) -> new Mecanum(hardwareMap, Constants.drivetrainConfig));
     }
 
-    @Tuner
-    public static Procedure tests() {
-        return new Tests(hardwareMap -> new Mecanum(hardwareMap, Constants.drivetrainConfig), (hardwareMap -> new OTOSLocalizer(hardwareMap, Constants.localizerConfig) {
-        }), null);
-    }
+//    @Tuner
+//    public static Procedure tests() {
+//        return new Tests(hardwareMap -> new Mecanum(hardwareMap, Constants.drivetrainConfig), (hardwareMap -> new OTOSLocalizer(hardwareMap, Constants.localizerConfig) {
+//        }), null);
+//    }
 }
