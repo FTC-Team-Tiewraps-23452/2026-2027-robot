@@ -1,4 +1,3 @@
-
 package org.firstinspires.ftc.teamcode.robot.opmode.teleop;
 
 import static com.pedropathing.ivy.Scheduler.schedule;
@@ -20,7 +19,6 @@ import org.firstinspires.ftc.teamcode.robot.opmode.OpModeStorage;
 
 @TeleOp(name = "TeleOP", group = "TeleOp")
 public class TeleOP extends OpMode {
-
     private Shooter shooter;
     private Intake intake;
     private Storage storage;
